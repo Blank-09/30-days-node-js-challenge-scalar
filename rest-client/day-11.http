@@ -1,0 +1,15 @@
+POST http://localhost:3000/token
+Content-Type: application/json
+
+{
+  "username": "Priyanshu",
+  "password": "123456"
+}
+
+### Verify
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlByaXlhbnNodSIsImlhdCI6MTcwNzYzMDM5Mn0.EBTdiMDPBPnNSbdoVvOlHhi8tK2oDmAn8wiIkHK-URw
+
+GET http://localhost:3000/
+Authorization: {{token}}
+
