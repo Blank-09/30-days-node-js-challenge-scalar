@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>WebSocket Example</h1>
+
+    <script>
+      const ws = new WebSocket("ws://localhost:3000");
+
+      ws.addEventListener("open", () => {
+        console.log("WebSocket connection established");
+        ws.send("Hello there 👋!");
+      });
+
+      ws.addEventListener("message", (event) => {
+        if (event.data instanceof Blob) {
+          const reader = new FileReader();
+
+          reader.onload = function () {
+            console.log("Received Blob data from server: ", this.result);
+          };
+
+          reader.readAsText(event.data);
+        } else {
+          console.log("Received message from server: ", event.data);
+        }
+      });
+    </script>
+  </body>
+</html>
